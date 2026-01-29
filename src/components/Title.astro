@@ -1,0 +1,154 @@
+---
+// Title.astro
+const { pathname } = Astro.url;
+
+const Labels: Record<string, string> = {
+    '/': 'Home',
+    '/about': 'About',
+    '/works': 'Works',
+    '/articles': 'Articles',
+};
+const currentPath = pathname.replace(/\/$/, "") || "/";
+const displayLabel = Labels[currentPath] || 'Portfolio';
+---
+
+<div class="container">
+    <div class="logo">
+        <img src="../../Icon.png" alt="" class="icon" />
+    </div>
+    <div class="contents">
+        <div class="line"></div>
+        <div class="text-top">Oxojo.dev</div>
+        <div class="text-bottom">{displayLabel}</div>
+    </div>
+</div>
+
+<style>
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.5rem;
+    }
+    .icon {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        opacity: 0;
+        transform: scale(0.8);
+        animation: fadeInScale 0.6s ease-out forwards;
+    }
+    .contents {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .line {
+        width: 400px;
+        height: 2px;
+        background-color: #cc213e;
+        transform: scaleX(0);
+        transform-origin: left;
+        animation: extendLine 0.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+        animation-delay: 0.6s;
+    }
+    .text-top {
+        position: absolute;
+        left: 20px;
+        opacity: 0;
+        font-family: Jua;
+        animation: fadeInText 0.5s ease-out forwards;
+        bottom: 5px;
+        font-size: 64px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 160%;
+        color: #cc213e;
+        animation-delay: 1.2s;
+    }
+    .text-bottom {
+        position: absolute;
+        left: 25px;
+        opacity: 0;
+        font-family: Jua;
+        animation: fadeInText 0.5s ease-out forwards;
+        top: 5px;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 160%;
+        color: black;
+        animation-delay: 1.4s;
+    }
+    @media screen and (max-width: 800px) {
+        .icon {
+            height: 25vw;
+            width: 25vw;
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: fadeInScale 0.6s ease-out forwards;
+        }
+        .line {
+            width: 50vw;
+            height: 2px;
+            background-color: #cc213e;
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: extendLine 0.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+            animation-delay: 0.6s;
+        }
+        .text-top {
+            position: absolute;
+            left: 2.5vw;
+            opacity: 0;
+            font-family: Jua;
+            animation: fadeInText 0.5s ease-out forwards;
+            bottom: 0.625vw;
+            font-size: 8vw;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 160%;
+            color: #cc213e;
+            animation-delay: 1.2s;
+        }
+        .text-bottom {
+            position: absolute;
+            left: 3vw;
+            opacity: 0;
+            font-family: Jua;
+            animation: fadeInText 0.5s ease-out forwards;
+            top: 0.625vw;
+            font-size: 4vw;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 160%;
+            color: black;
+            animation-delay: 1.4s;
+        }
+    }
+    @keyframes fadeInScale {
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes extendLine {
+        to {
+            transform: scaleX(1);
+        }
+    }
+
+    @keyframes fadeInText {
+        from {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+</style>

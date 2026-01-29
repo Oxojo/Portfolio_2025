@@ -1,0 +1,100 @@
+---
+// Header.astro
+const { pathname } = Astro.url;
+const isActive = (path: string) => {
+  const currentPath = pathname.replace(/\/$/, "");
+  const targetPath = path.replace(/\/$/, "");
+  return currentPath === targetPath;
+};
+const navItems = [
+    { name: 'About', href: '/about' },
+    { name: 'Works', href: '/works' },
+    { name: 'Articles', href: '/articles' }
+];
+---
+
+<header class="header">
+    <nav class="container">
+        <a href="/" class="logo">
+            <img src="../../logo_port.png" alt="">
+        </a>
+        <ul class="menu">
+            {navItems.map(item => (
+                <li><a href={item.href} class={isActive(item.href) ? 'active' : 'content'}>{item.name}</a></li>
+            ))}
+        </ul>
+    </nav>
+</header>
+
+<style>
+.container {
+    display: flex;
+    width: auto;
+    padding: 10px 40px;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto auto;
+}
+@media screen and (max-width: 800px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        width: auto;
+        padding: 10px 40px;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto;
+    }
+}
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 0;
+}
+.menu li a {
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.2s;
+}
+.content {
+    text-decoration: none;
+    color: #000;
+    font-family: "Imprima";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%;
+    padding: 10px 20px;
+    transition: color 0.2s;
+    justify-content: center;
+    text-align: center;
+}
+.active {
+    text-decoration: none;
+    color: #000;
+    font-family: "Imprima";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%;
+    padding: 10px 20px;
+    transition: color 0.2s;
+    border-bottom: 2px solid #cc213e;
+}
+.content:hover {
+    background: #cc213e;
+    color: white;
+}
+.active:hover {
+    background: #cc213e;
+    color: white;
+}
+</style>

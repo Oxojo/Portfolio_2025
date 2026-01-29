@@ -9,6 +9,8 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource/imprima": "^5.2.8",
+    "@fontsource/jua": "^5.2.8",
     "astro": "^5.16.15"
   }
 }
