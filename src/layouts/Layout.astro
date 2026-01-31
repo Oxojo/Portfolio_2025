@@ -1,6 +1,11 @@
 ---
 import '@fontsource/imprima';
 import '@fontsource/jua'
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
 ---
 
 <!doctype html>
@@ -11,7 +16,7 @@ import '@fontsource/jua'
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title} | Oxojo.dev </title>
 	</head>
 	<body>
 		<slot />
